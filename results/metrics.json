@@ -1,0 +1,153 @@
+{
+  "test_patients": 300,
+  "test_windows": 200400,
+  "ablation_stride_min": 30,
+  "event_base_rate": 0.4108932135728543,
+  "models": {
+    "persistence": {
+      "auroc": 0.7971573433278436,
+      "auprc": 0.7983788895740789,
+      "within_patient_auroc": 0.621325611119153,
+      "brier": 0.18888471531666187,
+      "threshold": 0.45,
+      "n_events": 10878,
+      "sensitivity": 0.0637065637065637,
+      "false_alarms_per_day": 0.4857485029940139,
+      "alarms_per_day": 0.6517365269461104,
+      "mean_lead_min": 47.61904761904762,
+      "median_lead_min": 20.0,
+      "patient_days": 4174.999999999984
+    },
+    "lgbm_cgm": {
+      "auroc": 0.9837085185838909,
+      "auprc": 0.9797484683046699,
+      "within_patient_auroc": 0.9683107113259324,
+      "brier": 0.0460466617152598,
+      "threshold": 0.97,
+      "n_events": 10878,
+      "sensitivity": 0.7038058466629895,
+      "false_alarms_per_day": 0.4483832335329359,
+      "alarms_per_day": 2.2821556886227636,
+      "mean_lead_min": 50.176332288401255,
+      "median_lead_min": 50.0,
+      "patient_days": 4174.999999999984
+    },
+    "lgbm_ehr": {
+      "auroc": 0.7905788741095632,
+      "auprc": 0.7634715463912858,
+      "within_patient_auroc": 0.5,
+      "brier": 0.17323193582395924,
+      "threshold": 0.8,
+      "n_events": 10878,
+      "sensitivity": 0.045412759698473984,
+      "false_alarms_per_day": 0.28502994011976157,
+      "alarms_per_day": 0.4033532934131752,
+      "mean_lead_min": 50.22267206477733,
+      "median_lead_min": 50.0,
+      "patient_days": 4174.999999999984
+    },
+    "lgbm_fused": {
+      "auroc": 0.9940817722564528,
+      "auprc": 0.992133325817424,
+      "within_patient_auroc": 0.988165157381114,
+      "brier": 0.02827620241910089,
+      "threshold": 0.995,
+      "n_events": 10878,
+      "sensitivity": 0.7789115646258503,
+      "false_alarms_per_day": 0.45173652694610955,
+      "alarms_per_day": 2.4811976047904287,
+      "mean_lead_min": 53.47043550100319,
+      "median_lead_min": 55.0,
+      "patient_days": 4174.999999999984
+    },
+    "fusion_net": {
+      "auroc": 0.9495506322232302,
+      "auprc": 0.9332895869322777,
+      "within_patient_auroc": 0.9158921452301703,
+      "brier": 0.08852965647534664,
+      "threshold": 0.9,
+      "n_events": 10878,
+      "sensitivity": 0.24241588527302813,
+      "false_alarms_per_day": 0.40718562874251657,
+      "alarms_per_day": 1.0388023952095848,
+      "mean_lead_min": 47.184300341296925,
+      "median_lead_min": 45.0,
+      "patient_days": 4174.999999999984
+    }
+  },
+  "deployed_model": "lgbm_fused",
+  "dense_deployed": {
+    "auroc": 0.9940277092289574,
+    "auprc": 0.9920346331047951,
+    "brier": 0.028439257318646723,
+    "threshold": 0.995,
+    "n_events": 10878,
+    "sensitivity": 0.8119139547710976,
+    "false_alarms_per_day": 0.620598802395212,
+    "alarms_per_day": 2.7360479041916275,
+    "mean_lead_min": 59.76902173913044,
+    "median_lead_min": 60.0,
+    "patient_days": 4174.999999999984,
+    "cadence_min": 15
+  },
+  "forecast": {
+    "lgbm_30min": {
+      "rmse": 11.001756879239455,
+      "mae": 7.537002023443924
+    },
+    "lgbm_60min": {
+      "rmse": 13.912420635960219,
+      "mae": 9.121569907692846
+    },
+    "lgbm_120min": {
+      "rmse": 23.35046146852409,
+      "mae": 15.212051466151312
+    },
+    "fusion_net_30min": {
+      "rmse": 31.06821309648076,
+      "mae": 21.673157213096694
+    },
+    "fusion_net_60min": {
+      "rmse": 32.06429052655214,
+      "mae": 22.284004621386472
+    },
+    "fusion_net_120min": {
+      "rmse": 32.25628442201733,
+      "mae": 22.33349892885016
+    }
+  },
+  "top_features": [
+    {
+      "feature": "frac_above_180_3h",
+      "mean_abs_shap": 2.2424497866941926
+    },
+    {
+      "feature": "g_max_3h",
+      "mean_abs_shap": 1.275190963983447
+    },
+    {
+      "feature": "g_mean_6h",
+      "mean_abs_shap": 0.9281077929216898
+    },
+    {
+      "feature": "hour_cos",
+      "mean_abs_shap": 0.7520925326284911
+    },
+    {
+      "feature": "g_mean_1h",
+      "mean_abs_shap": 0.6127987510274737
+    },
+    {
+      "feature": "g_delta_60m",
+      "mean_abs_shap": 0.5442408100833025
+    },
+    {
+      "feature": "g_slope_60m",
+      "mean_abs_shap": 0.4170163731321361
+    },
+    {
+      "feature": "hour_sin",
+      "mean_abs_shap": 0.35716616789118266
+    }
+  ]
+}

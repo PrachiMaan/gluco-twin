@@ -1,0 +1,6 @@
+model,auroc,auprc,within_patient_auroc,brier,sensitivity_at_far,false_alarms_per_day,mean_lead_min,threshold
+persistence,0.7972,0.7984,0.6213,0.1889,0.064,0.486,47.6,0.45
+lgbm_cgm,0.9837,0.9797,0.9683,0.046,0.704,0.448,50.2,0.97
+lgbm_ehr,0.7906,0.7635,0.5,0.1732,0.045,0.285,50.2,0.8
+lgbm_fused,0.9941,0.9921,0.9882,0.0283,0.779,0.452,53.5,0.995
+fusion_net,0.9496,0.9333,0.9159,0.0885,0.242,0.407,47.2,0.9

@@ -1,0 +1,17 @@
+{
+  "pos_weight": 1.478950363266013,
+  "models": {
+    "lgbm_cgm": {
+      "val_auc": 0.9842809164145034,
+      "n_features": 15
+    },
+    "lgbm_ehr": {
+      "val_auc": 0.8060355353474534,
+      "n_features": 20
+    },
+    "lgbm_fused": {
+      "val_auc": 0.9940503231816608,
+      "n_features": 55
+    }
+  }
+}

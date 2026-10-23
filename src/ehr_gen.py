@@ -68,7 +68,7 @@ def generate_ehr(n_patients: int = N_PATIENTS, seed: int = SEED) -> pd.DataFrame
     # Waist is high relative to BMI (central adiposity): sex-specific base
     # plus a strong BMI slope.
     waist_base = np.where(sex == "M", 89.5, 83.0)
-    waist = waist_base + 1.05 * (bmi - 22.0) + rng.normal(0, 4.2, n_patients)
+    waist = waist_base + 1.18 * (bmi - 22.0) + rng.normal(0, 4.0, n_patients)
     waist = np.clip(waist, 68, 135).round(1)
 
     diet_type = np.where(rng.random(n_patients) < 0.42, "veg", "non-veg")
@@ -86,7 +86,7 @@ def generate_ehr(n_patients: int = N_PATIENTS, seed: int = SEED) -> pd.DataFrame
 
     # --- correlated labs --------------------------------------------------
     hba1c = (
-        6.9
+        6.75
         + 0.040 * years_since_dx
         + 0.050 * (bmi - 24.0)
         + 0.020 * (age - 55.0)
@@ -99,7 +99,7 @@ def generate_ehr(n_patients: int = N_PATIENTS, seed: int = SEED) -> pd.DataFrame
     # glucose tracks eAG but sits below it because post-meal spikes dominate
     # the daily average in poorly controlled patients.
     eag = 28.7 * hba1c - 46.7
-    fpg = np.clip(0.65 * eag + 35.0 + rng.normal(0, 8.0, n_patients), 70, 300).round(0)
+    fpg = np.clip(0.72 * eag + 32.0 + rng.normal(0, 8.0, n_patients), 70, 300).round(0)
 
     trig = np.exp(
         np.log(145.0)
@@ -114,16 +114,19 @@ def generate_ehr(n_patients: int = N_PATIENTS, seed: int = SEED) -> pd.DataFrame
     ).round(0)
 
     systolic_bp = (
-        116.0
-        + 0.42 * (age - 50.0)
-        + 0.35 * (bmi - 24.0)
-        + 0.25 * years_since_dx
-        + rng.normal(0, 11.0, n_patients)
+        124.0
+        + 0.44 * (age - 50.0)
+        + 0.38 * (bmi - 24.0)
+        + 0.28 * years_since_dx
+        + rng.normal(0, 12.0, n_patients)
     )
     systolic_bp = np.clip(systolic_bp, 95, 195).round(0)
-    hypertension = (
-        (systolic_bp >= 140) | (rng.random(n_patients) < 0.10)
-    ).astype(int)
+    # Diagnosed hypertension: driven by age, adiposity and the measured BP,
+    # so treated patients can show a normal reading on the day of the visit.
+    p_htn = _sigmoid(
+        -0.25 + 0.055 * (systolic_bp - 132.0) + 0.045 * (age - 55.0) + 0.06 * (bmi - 24.0)
+    )
+    hypertension = (rng.random(n_patients) < p_htn).astype(int)
 
     egfr = (
         106.0
@@ -147,7 +150,7 @@ def generate_ehr(n_patients: int = N_PATIENTS, seed: int = SEED) -> pd.DataFrame
     ).astype(int)
     insulin = (
         rng.random(n_patients)
-        < _sigmoid(-3.2 + 1.3 * (hba1c - 8.0) + 0.09 * years_since_dx)
+        < _sigmoid(-2.2 + 1.3 * (hba1c - 8.0) + 0.09 * years_since_dx)
     ).astype(int)
     # Metformin is the default first-line therapy; make a tiny share
     # monotherapy-free so the table is not perfectly deterministic.

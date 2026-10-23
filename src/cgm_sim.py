@@ -40,9 +40,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 
 # physiological constants (documented in docs/DATA_CARD.md)
-CARB_GAIN = 1.6        # mg/dL of glucose appearance per gram of carbohydrate
+CARB_GAIN = 2.0        # mg/dL of glucose appearance per gram of carbohydrate
 U2X = 6.0              # (insulin U/min) -> insulin-action units
-TAU_X = 30.0           # endogenous insulin action delay (min)
+TAU_X = 26.0           # endogenous insulin action delay (min)
 TAU_E = 45.0           # exogenous insulin action delay (min)
 X_GAIN_BASAL = 0.143   # basal signalling level of the normalised drive
 DAWN_RATE = 0.08       # mg/dL/min peak of the dawn phenomenon
@@ -85,7 +85,7 @@ def derive_params(ehr: pd.DataFrame, rng: np.random.Generator) -> pd.DataFrame:
 
     s_i = (
         0.033
-        * np.exp(-0.045 * (bmi - 22.0) - 0.030 * ysd - 0.085 * (a1c - 7.0))
+        * np.exp(-0.065 * (bmi - 22.0) - 0.030 * ysd - 0.085 * (a1c - 7.0))
         * (1.0 + 0.15 * ehr["metformin"].to_numpy(float) + 0.10 * ehr["dpp4"].to_numpy(float))
         * np.exp(j(0.12))
     )
@@ -95,7 +95,7 @@ def derive_params(ehr: pd.DataFrame, rng: np.random.Generator) -> pd.DataFrame:
 
     # first-phase secretion is lost with disease duration and the TT genotype
     x_gain = 3.0 - 0.09 * ysd - 1.1 * tt - 0.4 * ct + np.clip(0.6 - 0.06 * a1c, -0.4, 0.6) + j(0.35)
-    x_gain = np.clip(x_gain, 0.6, 4.0)
+    x_gain = np.clip(x_gain, 1.0, 4.0)
     x_gain = x_gain * (1.0 - 0.40 * ehr["insulin"].to_numpy(float))
     x_gain = x_gain * (1.0 + 0.35 * ehr["sulfonylurea"].to_numpy(float))
 
@@ -141,6 +141,8 @@ def _build_patient_schedule(
 
     night_windows: list[tuple[float, float, float]] = []
     stress_days = np.zeros(days)
+    meal_log: list[tuple[int, int, float, str]] = []
+    walk_log: list[tuple[int, float, float, float]] = []
 
     for d in range(days):
         base = d * STEPS_PER_DAY
@@ -168,6 +170,7 @@ def _build_patient_schedule(
         for minute, carbs, kind in meals:
             if minute < 0 or minute >= 24 * 60:
                 continue
+            meal_log.append((d, minute, carbs, kind))
             k = MEAL_KINDS[kind]
             amp = carbs * CARB_GAIN
             start = base + minute // STEP_MIN
@@ -182,6 +185,7 @@ def _build_patient_schedule(
         def block(start_min: int, dur_min: int, level: float) -> None:
             s = base + int(start_min) // STEP_MIN
             n_steps = max(int(dur_min) // STEP_MIN, 1)
+            walk_log.append((d, float(start_min), float(dur_min), float(level)))
             for j_step in range(n_steps):
                 idx = s + j_step
                 if 0 <= idx < t_steps:
@@ -263,6 +267,8 @@ def _build_patient_schedule(
         "sleep_mult": sleep_mult.astype(np.float32),
         "night_windows": night_windows,
         "stress_days": stress_days,
+        "meal_log": meal_log,
+        "walk_log": walk_log,
         "flags": {
             "morning_walk": int(morning_walk),
             "post_lunch_walk": int(post_lunch_walk),
@@ -330,7 +336,7 @@ def _simulate_chunk(
     ring_ptr = 0
     for t in range(t_steps):
         g_del = g_hist[:, ring_ptr][:, None]  # 15-min delayed glucose, column
-        signal = np.clip((g_del - (g_basal - 10.0)) / 70.0, 0.0, 3.0)
+        signal = np.clip((g_del - (g_basal - 10.0)) / 70.0, 0.0, 4.0)
         x_target = x_gain * signal
         x = x + dt * (x_target - x) / TAU_X
         xe = xe + dt * (exo_rate[:, t][:, None] * U2X - xe) / TAU_E
@@ -339,7 +345,7 @@ def _simulate_chunk(
         deviation = np.clip(x + xe - x0 - xe_basal, -0.5, None)
         clear = s_i_eff * deviation * np.clip(g - 55.0, 0.0, None)
         # counter-regulation when glucose drops low (weaker on sulfonylureas)
-        rescue = np.where(g < 70.0, 0.04 * (70.0 - g) * (1.0 - 0.40 * su), 0.0)
+        rescue = np.where(g < 70.0, 0.03 * (70.0 - g) * (1.0 - 0.40 * su), 0.0)
 
         g = g + dt * (
             -(g - g_basal) / tau_g

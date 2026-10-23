@@ -32,12 +32,24 @@ const schema = defineSchema(
       role: v.optional(roleValidator), // role of the user. do not remove
     }).index("email", ["email"]), // index for the email. do not remove or modify
 
-    // add other tables here
+    // Clinician workflow state. The read-only twin artifacts stay as static
+    // JSON (see docs/DECISIONS.md); what a person does with an alert is
+    // per-user state, so it lives here.
+    alertAcks: defineTable({
+      userId: v.id("users"),
+      patientId: v.string(),
+      alertKey: v.string(),
+      acknowledgedAt: v.number(),
+    })
+      .index("by_user", ["userId"])
+      .index("by_user_patient", ["userId", "patientId"]),
 
-    // tableName: defineTable({
-    //   ...
-    //   // table fields
-    // }).index("by_field", ["field"])
+    patientNotes: defineTable({
+      userId: v.id("users"),
+      patientId: v.string(),
+      body: v.string(),
+      createdAt: v.number(),
+    }).index("by_user_patient", ["userId", "patientId"]),
   },
   {
     schemaValidation: false,
