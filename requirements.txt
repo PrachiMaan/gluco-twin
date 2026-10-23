@@ -1,0 +1,15 @@
+# GlucoTwin pipeline requirements — Python 3.10+
+# Verified installs (versions as tested in this environment).
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2
+lightgbm==4.7.0
+shap==0.49.1
+matplotlib==3.10.9
+plotly==7.1.0
+fastapi==0.161.1
+uvicorn==0.54.0
+httpx==0.28.1
+python-pptx==1.0.2
+pytest==9.1.1
