@@ -57,7 +57,7 @@ SLIDES: list[dict] = [
         "eyebrow": "HAPPIEST HEALTH SUMMIT 2026  /  DIGITAL TWIN FOR TYPE 2 DIABETES",
         "title": "GlucoTwin",
         "subtitle": "A two-hour warning, and a what-if sandbox, for type 2 diabetes.",
-        "foot": "six seven  ·  IGDTUW",
+        "foot": "six seven",
         "note": "Say: we rebuilt one patient as a twin, and we test the advice before giving it.",
     },
     {
@@ -68,7 +68,7 @@ SLIDES: list[dict] = [
             "Most of them see a doctor two or three times a year.",
             "The disease acts every day, between those visits.",
         ],
-        "foot": "Source: Anjana et al., Lancet Diabetes & Endocrinology, 2023 (ICMR-INDIAB national study).",
+        "foot": "Anjana et al., Lancet Diabetes & Endocrinology, 2023. ICMR-INDIAB national study.",
     },
     {
         "kind": "bullets",
@@ -240,7 +240,7 @@ SLIDES: list[dict] = [
         "kind": "closing",
         "title": "Thank you.",
         "subtitle": "GlucoTwin is a decision aid, not a doctor. The clinician decides.",
-        "foot": "six seven  ·  glucotwin.freebuff.app  ·  youtu.be/K4raAnGqGx0",
+        "foot": "Demo video: https://youtu.be/K4raAnGqGx0   ·   Prototype: https://glucotwin.freebuff.app/",
     },
 ]
 
