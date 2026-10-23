@@ -14,15 +14,12 @@ data. It is not a medical device and it does not give medical advice.
 ## Team details and college / incubator
 
 - **Team name:** six seven
-- [MEMBER 1, ROLE, EMAIL]
-- [MEMBER 2, ROLE, EMAIL]
-- [MEMBER 3, ROLE, EMAIL]
-- **College:** [COLLEGE]
-- **Incubator:** [INCUBATOR]
-- Mentor: [MENTOR NAME, ROLE]
+- PRACHI , LEADER , maanprachi123@gmail.com
+- RITIKA MAAN , ritikamaan2006@gmail.com
+- **College:** IGDTUW
+- **LINK:** https://glucotwin.freebuff.app/
 
-Replace the member, college, incubator and mentor placeholders before
-submitting. No real institution is implied.
+
 
 ## Project title
 
