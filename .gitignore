@@ -9,6 +9,6 @@ __pycache__/
 *.pyc
 data/*
 !data/sample/
+!data/sample/**
 results/*.npz
 models/
-public/data/p/

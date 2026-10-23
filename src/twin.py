@@ -320,20 +320,39 @@ class PatientTwin:
         x = self.features_at(step)
         contributions = self.bundle.shap_row(x)
         names = [self.bundle.feature_names[i] for i in self.bundle.cols]
-        order = np.argsort(-np.abs(contributions))[:k]
-        out = []
-        for j in order:
-            name = names[j]
-            out.append(
-                {
+        # Several features can share one plain-language label (hour_sin and
+        # hour_cos are both "time of day"). Merge them so the clinician does
+        # not see the same sentence twice.
+        merged: dict[str, dict] = {}
+        for j, name in enumerate(names):
+            label = plain_label(name)
+            value = float(contributions[j])
+            entry = merged.get(label)
+            if entry is None:
+                merged[label] = {
+                    "label": label,
                     "feature": name,
                     "value": float(x[self.bundle.cols[j]]),
-                    "contribution": float(contributions[j]),
-                    "direction": "raises" if contributions[j] > 0 else "lowers",
-                    "label": plain_label(name),
+                    "contribution": value,
+                    "peak": abs(value),
                 }
-            )
-        return out
+            else:
+                entry["contribution"] += value
+                if abs(value) > entry["peak"]:
+                    entry["peak"] = abs(value)
+                    entry["feature"] = name
+                    entry["value"] = float(x[self.bundle.cols[j]])
+        ranked = sorted(merged.values(), key=lambda row: -abs(row["contribution"]))[:k]
+        return [
+            {
+                "feature": row["feature"],
+                "value": row["value"],
+                "contribution": row["contribution"],
+                "direction": "raises" if row["contribution"] > 0 else "lowers",
+                "label": row["label"],
+            }
+            for row in ranked
+        ]
 
     # ---- what-if support ----------------------------------------------
     def risk_with_simulated(

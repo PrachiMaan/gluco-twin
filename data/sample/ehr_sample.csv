@@ -1,0 +1,4 @@
+patient_id,age,sex,bmi,waist_cm,diet_type,family_history,years_since_dx,hba1c,fpg_mgdl,egfr,ldl,triglycerides,systolic_bp,metformin,sulfonylurea,dpp4,insulin,hypertension,tcf7l2,prior_hypo_count
+GT-0001,59,F,24.7,93.3,veg,1,7.1,6.9,124,99,154,194,117,1,0,0,0,0,CC,0
+GT-0002,46,M,22.7,93.9,veg,0,11.2,7.5,147,91,95,73,126,1,1,1,1,0,CT,5
+GT-0003,63,M,25.2,90.6,non-veg,0,0.0,6.6,147,99,134,189,131,1,1,0,0,0,CC,3
