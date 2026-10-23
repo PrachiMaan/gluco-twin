@@ -21,7 +21,7 @@ off. The dashboard is designed for a wide screen.
 
 **Say:**
 
-> Hi, we are [TEAM NAME] from [COLLEGE]. We built GlucoTwin, a digital twin for
+> Hi, we are six seven from [COLLEGE]. We built GlucoTwin, a digital twin for
 > type 2 diabetes. It watches a patient's last six hours and warns the clinic
 > two hours before a hyperglycemic event. Then it lets the clinician test what
 > would actually help that patient, before saying it.

@@ -1,4 +1,13 @@
-.env.local
+# Environment files and any local secrets. Only the template is tracked.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+.venv/
+venv/
+
 node_modules
 dist
 src/convex/_generated
@@ -12,3 +21,6 @@ data/*
 !data/sample/**
 results/*.npz
 models/
+
+# Optional external validation inputs must stay out of the repo
+data/external/

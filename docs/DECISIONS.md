@@ -51,6 +51,21 @@ Every non-obvious choice made while building this repo, with the reason.
 9. **Scale kept as specified:** 1,500 patients x 14 days x 5-minute resolution
    (4,032 steps per patient, 6.05M rows total) for data generation.
 
+## Publication and secrets
+
+10. **The repository is written to be public, so it holds no credentials.**
+    Nothing in the Python pipeline needs a key. The web app reads `VITE_CONVEX_URL`
+    from the host environment, and the Convex auth keys (`JWKS`,
+    `JWT_PRIVATE_KEY`, `SITE_URL`) stay in the Convex deployment, never in a
+    file here. `.gitignore` excludes `.env`, `.env.*` (except the example),
+    `.venv/`, `*.pem` and `*.key`, so a local key file cannot be committed by
+    accident. A grep for key-shaped strings over the tracked source returns
+    nothing.
+11. **The demo video and the published link are left blank on purpose.** The
+    README has a labelled empty slot for each so the person recording and
+    deploying can paste them in at submission time without editing anything
+    else.
+
 ## Phase 2 - modelling
 
 10. **Metric cadence is explicit.** The ablation table scores every model at

@@ -13,15 +13,16 @@ data. It is not a medical device and it does not give medical advice.
 
 ## Team details and college / incubator
 
-- Team: [TEAM NAME]
+- **Team name:** six seven
 - [MEMBER 1, ROLE, EMAIL]
 - [MEMBER 2, ROLE, EMAIL]
 - [MEMBER 3, ROLE, EMAIL]
-- College: [COLLEGE]
-- Incubator: [INCUBATOR]
+- **College:** [COLLEGE]
+- **Incubator:** [INCUBATOR]
 - Mentor: [MENTOR NAME, ROLE]
 
-Replace the placeholders before submitting. No real institution is implied.
+Replace the member, college, incubator and mentor placeholders before
+submitting. No real institution is implied.
 
 ## Project title
 
@@ -32,7 +33,7 @@ last six hours, warn the clinic when the next two hours are likely to cross
 180 mg/dL, and show what a walk, a smaller dinner or a dose review would do to
 that same replica.
 
-## Problem statement and healthcare use case
+## Problem statement
 
 India carries a very large diabetes burden. The ICMR-INDIAB study published in
 2023 estimated 101 million people with diabetes and 136 million with
@@ -49,6 +50,8 @@ Three things follow from that gap:
 3. **Advice is generic because the data is generic.** "Walk after dinner" helps
    one patient and barely moves another. A clinician has no cheap way to check
    which is which before saying it.
+
+### Healthcare use case
 
 GlucoTwin addresses those three points with one artefact per patient:
 
@@ -76,7 +79,7 @@ clinic. The output is decision support. A clinician makes every decision.
    conversation there.
 5. Acknowledge the alert and leave a note. Both are stored per clinician.
 
-## Technical stack and AI/ML model details
+## Technical stack
 
 ### Stack
 
@@ -103,6 +106,8 @@ The Streamlit dashboard in the original brief is replaced by the React clinic
 workspace in this repository, because the submission runs as a web app in this
 environment and Streamlit cannot be previewed or verified here. The FastAPI
 service is kept. This is documented in DECISIONS as well.
+
+## AI/ML model details
 
 ### Data
 
@@ -291,6 +296,25 @@ preview link is needed.
 make docs      # architecture.pdf/png, presentation.pptx/pdf, screenshots
 ```
 
+### 6. Keys and secrets
+
+This repository is meant to be public, so it contains no credentials of any
+kind. There are no API keys, tokens, deployment secrets or signing keys in the
+tracked files, and `.gitignore` excludes `.env`, `.env.*` (except
+`.env.example`), `.venv/`, `*.pem` and `*.key` so a local file cannot slip in by
+accident.
+
+- The Python pipeline and the FastAPI service need no keys at all. Every model
+  runs locally on a CPU.
+- The dashboard's Convex deployment URL is supplied by the host at build time
+  (`VITE_CONVEX_URL`). Convex auth keys (`JWKS`, `JWT_PRIVATE_KEY`, `SITE_URL`)
+  live in the Convex dashboard environment, never in this repo.
+- To run locally, copy `.env.example` to `.env.local` and fill in your own values.
+  That file is ignored by git. Do not commit it, and rotate any key that has
+  ever been pasted into a file you plan to publish.
+- The hosted preview is read-only with respect to patient data: only synthetic
+  patients and per-clinician alert acknowledgements are stored.
+
 ### Optional: score the model on real data
 
 This is the only part of the repository that touches real data, and it is
@@ -309,13 +333,22 @@ submission.** The data is not bundled and no external performance is claimed.
 
 ## Demo video link
 
-[DEMO VIDEO LINK, minimum 20 minutes]
+Video link: 
 
-A 22-minute shot-by-shot script with slide numbers, click targets and a
-two-minute recording checklist is in
-[docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md). The recording covers the problem,
-the data, the model, the twin, the what-if engine, the dashboard, the honest
-failures and the roadmap.
+Expected length 15 to 20 minutes, uploaded as an unlisted YouTube video. Paste
+the link above before submitting. A 22-minute shot-by-shot script with slide
+numbers, click targets and a two-minute recording checklist is in
+[docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md), so the cut can land anywhere in
+that window. The recording covers the problem, the data, the model, the twin,
+the what-if engine, the dashboard, the honest failures and the roadmap.
+
+## Published project link
+
+Preview link: 
+
+Paste the link above once the app is deployed. The dashboard in that deployment reads the same exported JSON bundle that
+`make export` writes, so the numbers on screen are the numbers in
+`results/metrics.json`.
 
 ## Open-source license details
 
@@ -327,6 +360,12 @@ MIT. See [LICENSE](LICENSE).
   patient consent to clear.
 - Third-party libraries keep their own licenses (LightGBM MIT, scikit-learn BSD,
   SHAP MIT, FastAPI MIT, React MIT, Convex Apache 2.0).
+
+Every file linked from this README is in the repository and readable without
+permission. Nothing here sits behind a login except the clinician workspace's
+own sign-in, which exists to keep per-clinician notes separate, not to gate the
+code or the results. The only external download is the optional real dataset,
+which is not redistributed.
 
 ## Architecture diagram
 
@@ -435,3 +474,36 @@ outputs, not from a mockup.
 7. **Model improvements that are worth trying.** A monotone constraint on recent
    time above range, a survival formulation for time-to-event instead of a fixed
    2-hour window, and conformal prediction for the forecast band.
+
+## Submission checklist
+
+Everything the submission form asks for, and where it is:
+
+| Required item | Where |
+| --- | --- |
+| Team details | [Team details](#team-details-and-college--incubator) |
+| College / incubator information | [Team details](#team-details-and-college--incubator) |
+| Project title | [Project title](#project-title) |
+| Problem statement | [Problem statement](#problem-statement) |
+| Healthcare use case | [Healthcare use case](#healthcare-use-case) and "What a clinician actually does with it" |
+| Technical stack | [Technical stack](#technical-stack) |
+| AI/ML model or framework details | [AI/ML model details](#aiml-model-details), plus [docs/MODEL_CARD.md](docs/MODEL_CARD.md) |
+| 15-20 minute demo video (unlisted YouTube) | [Demo video link](#demo-video-link), link left blank until recorded |
+| Open-source license details | [Open-source license details](#open-source-license-details), [LICENSE](LICENSE) |
+| Architecture diagram in PDF/PPT | [docs/architecture.pdf](docs/architecture.pdf), [docs/architecture.png](docs/architecture.png) |
+| Presentation in PDF/PPT | [docs/presentation.pdf](docs/presentation.pdf), [docs/presentation.pptx](docs/presentation.pptx) |
+| All files and links publicly accessible | MIT license, no gated assets, no credentials. Published link is in [Published project link](#published-project-link) |
+
+## Files in this repository
+
+```
+src/            pipeline: data, features, models, training, evaluation, twin, what-if, API
+app/            optional Streamlit screen, kept for reference only (not the deployed UI)
+src/pages/      React landing page, auth page and clinic dashboard
+src/components/ twin chart, risk gauge, cohort table, workspace
+src/convex/     schema, auth wiring, clinician acknowledgements and notes
+tests/          pytest suite (data, models, twin, what-if, API)
+results/        metrics.json, ablation.csv, SHAP importances, plots
+public/data/    exported JSON the dashboard reads
+docs/           data card, model card, decisions, architecture, slides, video script
+```

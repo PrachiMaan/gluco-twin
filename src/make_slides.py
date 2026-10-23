@@ -57,7 +57,7 @@ SLIDES: list[dict] = [
         "eyebrow": "HAPPIEST HEALTH SUMMIT 2026  /  DIGITAL TWIN FOR TYPE 2 DIABETES",
         "title": "GlucoTwin",
         "subtitle": "A two-hour warning, and a what-if sandbox, for type 2 diabetes.",
-        "foot": "[TEAM NAME]  ·  [COLLEGE]  ·  [INCUBATOR]",
+        "foot": "six seven  ·  [COLLEGE]  ·  [INCUBATOR]",
         "note": "Say: we rebuilt one patient as a twin, and we test the advice before giving it.",
     },
     {
@@ -240,7 +240,7 @@ SLIDES: list[dict] = [
         "kind": "closing",
         "title": "Thank you.",
         "subtitle": "GlucoTwin is a decision aid, not a doctor. The clinician decides.",
-        "foot": "[TEAM NAME]  ·  [EMAIL]  ·  Demo video: [LINK]  ·  Code: [REPOSITORY]",
+        "foot": "six seven  ·  [EMAIL]  ·  Demo video: [LINK]  ·  Code: [REPOSITORY]",
     },
 ]
 
