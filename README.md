@@ -9,7 +9,6 @@ Built for the Happiest Health "Reimagining and Reforming Healthcare in India"
 Summit 2026 challenge. Everything here is a research prototype on synthetic
 data. It is not a medical device and it does not give medical advice.
 
-![The twin workspace](docs/screenshots/twin.png)
 
 ## Team details and college / incubator
 
@@ -18,6 +17,7 @@ data. It is not a medical device and it does not give medical advice.
 - RITIKA MAAN , ritikamaan2006@gmail.com
 - **College:** IGDTUW
 - **LINK:** https://glucotwin.freebuff.app/
+- **VIDEO LINK :**   https://youtu.be/K4raAnGqGx0
 
 
 
