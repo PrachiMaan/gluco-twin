@@ -57,18 +57,18 @@ SLIDES: list[dict] = [
         "eyebrow": "HAPPIEST HEALTH SUMMIT 2026  /  DIGITAL TWIN FOR TYPE 2 DIABETES",
         "title": "GlucoTwin",
         "subtitle": "A two-hour warning, and a what-if sandbox, for type 2 diabetes.",
-        "foot": "six seven  ·  [COLLEGE]  ·  [INCUBATOR]",
+        "foot": "six seven  ·  IGDTUW",
         "note": "Say: we rebuilt one patient as a twin, and we test the advice before giving it.",
     },
     {
         "kind": "bullets",
         "title": "India does not have a diabetes problem.\nIt has a daily one.",
         "bullets": [
-            "101 million people with diabetes in India. 136 million with prediabetes. [CITE]",
+            "101 million people with diabetes in India. 136 million with prediabetes.",
             "Most of them see a doctor two or three times a year.",
             "The disease acts every day, between those visits.",
         ],
-        "foot": "ICMR-INDIAB, 2023. Citation to be completed before submission.",
+        "foot": "Source: Anjana et al., Lancet Diabetes & Endocrinology, 2023 (ICMR-INDIAB national study).",
     },
     {
         "kind": "bullets",
@@ -240,7 +240,7 @@ SLIDES: list[dict] = [
         "kind": "closing",
         "title": "Thank you.",
         "subtitle": "GlucoTwin is a decision aid, not a doctor. The clinician decides.",
-        "foot": "six seven  ·  [EMAIL]  ·  Demo video: [LINK]  ·  Code: [REPOSITORY]",
+        "foot": "six seven  ·  glucotwin.freebuff.app  ·  youtu.be/K4raAnGqGx0",
     },
 ]
 

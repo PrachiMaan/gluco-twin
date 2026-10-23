@@ -10,14 +10,12 @@ Summit 2026 challenge. Everything here is a research prototype on synthetic
 data. It is not a medical device and it does not give medical advice.
 
 
-## Team details and college / incubator
+## Team details
 
 - **Team name:** six seven
-- PRACHI , LEADER , maanprachi123@gmail.com
-- RITIKA MAAN , ritikamaan2006@gmail.com
+- **Members:** Prachi (team lead, maanprachi123@gmail.com), Ritika Maan
+  (ritikamaan2006@gmail.com)
 - **College:** IGDTUW
-- **LINK:** https://glucotwin.freebuff.app/
-- **VIDEO LINK :**   https://youtu.be/K4raAnGqGx0
 
 
 
@@ -32,10 +30,14 @@ that same replica.
 
 ## Problem statement
 
-India carries a very large diabetes burden. The ICMR-INDIAB study published in
-2023 estimated 101 million people with diabetes and 136 million with
-prediabetes in India [CITE]. Most care happens in short clinic visits separated
-by months, while the disease acts every day.
+India carries a very large diabetes burden. The ICMR-INDIAB study estimated 101
+million people with diabetes and 136 million with prediabetes in India in 2021
+[1]. Most care happens in short clinic visits separated by months, while the
+disease acts every day.
+
+[1] Anjana RM, et al. Metabolic non-communicable disease health report of
+India: the ICMR-INDIAB national cross-sectional study. *Lancet Diabetes
+Endocrinology* 2023;11(7):474-489. [doi:10.1016/S2213-8587(23)00119-5](https://doi.org/10.1016/S2213-8587(23)00119-5)
 
 Three things follow from that gap:
 
@@ -330,21 +332,20 @@ submission.** The data is not bundled and no external performance is claimed.
 
 ## Demo video link
 
-Video link: 
+**https://youtu.be/K4raAnGqGx0** (unlisted YouTube)
 
-Expected length 15 to 20 minutes, uploaded as an unlisted YouTube video. Paste
-the link above before submitting. A 22-minute shot-by-shot script with slide
-numbers, click targets and a two-minute recording checklist is in
-[docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md), so the cut can land anywhere in
-that window. The recording covers the problem, the data, the model, the twin,
-the what-if engine, the dashboard, the honest failures and the roadmap.
+A 22-minute shot-by-shot script with slide numbers, click targets and a
+two-minute recording checklist is in [docs/VIDEO_SCRIPT.md](docs/VIDEO_SCRIPT.md),
+so a re-recorded cut can land anywhere in the 15 to 20 minute window. The video
+covers the problem, the data, the model, the twin, the what-if engine, the
+dashboard, the honest failures and the roadmap.
 
 ## Published project link
 
-Preview link: 
+**https://glucotwin.freebuff.app/**
 
-Paste the link above once the app is deployed. The dashboard in that deployment reads the same exported JSON bundle that
-`make export` writes, so the numbers on screen are the numbers in
+The clinic workspace is served there. The dashboard reads the same exported JSON
+bundle that `make export` writes, so the numbers on screen are the numbers in
 `results/metrics.json`.
 
 ## Open-source license details
@@ -381,7 +382,7 @@ pipeline depends on it.
 - [docs/presentation.pptx](docs/presentation.pptx)
 - [docs/presentation.pdf](docs/presentation.pdf)
 
-Twenty slides: problem, why India, solution, synthetic data, architecture,
+Twenty-one slides: problem, why India, solution, synthetic data, architecture,
 model, real results with the ablation, twin, what-if, dashboard, limitations,
 roadmap. Plain white slides, black text, large type, one idea per page.
 
@@ -478,14 +479,14 @@ Everything the submission form asks for, and where it is:
 
 | Required item | Where |
 | --- | --- |
-| Team details | [Team details](#team-details-and-college--incubator) |
-| College / incubator information | [Team details](#team-details-and-college--incubator) |
+| Team details | [Team details](#team-details) |
+| College information | [Team details](#team-details) |
 | Project title | [Project title](#project-title) |
 | Problem statement | [Problem statement](#problem-statement) |
 | Healthcare use case | [Healthcare use case](#healthcare-use-case) and "What a clinician actually does with it" |
 | Technical stack | [Technical stack](#technical-stack) |
 | AI/ML model or framework details | [AI/ML model details](#aiml-model-details), plus [docs/MODEL_CARD.md](docs/MODEL_CARD.md) |
-| 15-20 minute demo video (unlisted YouTube) | [Demo video link](#demo-video-link), link left blank until recorded |
+| 15-20 minute demo video (unlisted YouTube) | [Demo video link](#demo-video-link) |
 | Open-source license details | [Open-source license details](#open-source-license-details), [LICENSE](LICENSE) |
 | Architecture diagram in PDF/PPT | [docs/architecture.pdf](docs/architecture.pdf), [docs/architecture.png](docs/architecture.png) |
 | Presentation in PDF/PPT | [docs/presentation.pdf](docs/presentation.pdf), [docs/presentation.pptx](docs/presentation.pptx) |

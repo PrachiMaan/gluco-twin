@@ -9,7 +9,7 @@ middle of a click.
 
 Before recording, read the two-minute checklist at the end.
 
-**Presenter:** [MEMBER 1]
+**Presenter:** Prachi (six seven)
 **Screen:** 1920 x 1080, browser at 100%, bookmarks bar hidden, notifications
 off. The dashboard is designed for a wide screen.
 
@@ -21,7 +21,7 @@ off. The dashboard is designed for a wide screen.
 
 **Say:**
 
-> Hi, we are six seven from [COLLEGE]. We built GlucoTwin, a digital twin for
+> Hi, we are six seven from IGDTUW. We built GlucoTwin, a digital twin for
 > type 2 diabetes. It watches a patient's last six hours and warns the clinic
 > two hours before a hyperglycemic event. Then it lets the clinician test what
 > would actually help that patient, before saying it.
@@ -35,7 +35,8 @@ Do not read the slide. Do not list the tech stack yet.
 **Say on slide 2:**
 
 > India has 101 million people with diabetes and another 136 million with
-> prediabetes. [CITE] Most of them see a doctor two or three times a year. The
+> prediabetes (ICMR-INDIAB, 2023). Most of them see a doctor two or three times
+> a year. The
 > disease acts every day in between.
 
 **Click:** next slide.

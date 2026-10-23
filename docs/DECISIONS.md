@@ -61,10 +61,11 @@ Every non-obvious choice made while building this repo, with the reason.
     `.venv/`, `*.pem` and `*.key`, so a local key file cannot be committed by
     accident. A grep for key-shaped strings over the tracked source returns
     nothing.
-11. **The demo video and the published link are left blank on purpose.** The
-    README has a labelled empty slot for each so the person recording and
-    deploying can paste them in at submission time without editing anything
-    else.
+11. **The demo video and the published link live in the README.** The video
+    walkthrough is an unlisted YouTube link and the clinic workspace is a hosted
+    preview; both are listed under their own README headings so a reviewer
+    reaches them without reading the whole file. The README also carries the
+    ICMR-INDIAB citation for the only external statistic it quotes.
 
 ## Phase 2 - modelling
 
