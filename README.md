@@ -13,11 +13,10 @@ data. It is not a medical device and it does not give medical advice.
 ## Team details
 
 - **Team name:** six seven
-- **Members:** Prachi (team lead, maanprachi123@gmail.com), Ritika Maan
-  (ritikamaan2006@gmail.com)
+- **Members:** Prachi , Ritika Maan
 - **College:** IGDTUW
-
-
+- **Link to prototype :** https://glucotwin.freebuff.app/
+- **YOUTUBE DEMO VIDEO:** https://youtu.be/K4raAnGqGx0
 
 ## Project title
 
